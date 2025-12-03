@@ -30,38 +30,37 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 .about, .contact{margin:36px 0;padding:18px;background:var(--glass);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 .site-footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
 
-/* Availability badge next to action buttons */
-.availability {
+/* Availability badge next to action buttons (higher specificity) */
+.card .card-actions .availability {
   display:inline-block;
   padding:6px 10px;
   border-radius:999px;
   font-weight:700;
   font-size:0.85rem;
-  color:#fff;
-  text-transform:none;
+  color:#ffffff;
   letter-spacing:0.2px;
   min-width:86px;
   text-align:center;
   box-shadow:0 6px 14px rgba(12,14,18,0.18);
 }
 
-/* Available state */
-.availability.available {
-  background: linear-gradient(180deg,#2ecc71,#27ae60);
-  border:1px solid rgba(0,0,0,0.08);
+/* Available state (green) */
+.card .card-actions .availability.available {
+  background: linear-gradient(180deg,#2ecc71,#27ae60) !important;
+  border:1px solid rgba(0,0,0,0.08) !important;
 }
 
-/* Unavailable state */
-.availability.unavailable {
-  background: linear-gradient(180deg,#ff6b6b,#e74c3c);
-  border:1px solid rgba(0,0,0,0.08);
+/* Unavailable state (red) */
+.card .card-actions .availability.unavailable {
+  background: linear-gradient(180deg,#ff6b6b,#e74c3c) !important;
+  border:1px solid rgba(0,0,0,0.08) !important;
 }
 
 /* Small screens: keep layout tidy */
 @media (max-width:520px){
   .card .card-actions { flex-direction:column; gap:8px; align-items:flex-start; }
   .card .card-actions > div[style] { margin-left:0; display:flex; gap:8px; width:100%; justify-content:space-between; }
-  .availability { min-width:72px; padding:6px 8px; font-size:0.82rem; }
+  .card .card-actions .availability { min-width:72px; padding:6px 8px; font-size:0.82rem; }
 }
 
 /* modal styles left in case you reuse modal elsewhere */

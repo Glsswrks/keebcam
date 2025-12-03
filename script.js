@@ -42,27 +42,29 @@ const whatsappMain = document.getElementById('whatsappMain');
 const telegramMain = document.getElementById('telegramMain');
 const discordMain = document.getElementById('discordMain');
 
-/* ---------- Render function (safe) ---------- */
+/* ---------- Render function (cards with price badge, clickable image/title) ---------- */
 function render(productsList){
   if(!grid) return;
   grid.innerHTML = '';
   productsList.forEach(p=>{
     const card = document.createElement('div');
     card.className = 'card';
-    // availability badge: green for available, red for unavailable
+
     const availClass = p.available ? 'availability available' : 'availability unavailable';
     const availText = p.available ? 'Available' : 'Unavailable';
 
     card.innerHTML = `
-      <img src="${p.img}" alt="${p.title}">
-      <h4>${p.title}</h4>
+      <span class="price-badge">$${p.price}</span>
+      <a class="card-link" href="products.html?id=${encodeURIComponent(p.id)}" aria-label="View ${p.title}">
+        <img src="${p.img}" alt="${p.title}">
+      </a>
+      <h4>
+        <a class="card-title-link" href="products.html?id=${encodeURIComponent(p.id)}">${p.title}</a>
+      </h4>
       <p class="muted">${p.short}</p>
       <div class="card-actions" style="align-items:center">
-        <div class="price">$${p.price}</div>
         <div style="margin-left:auto; display:flex; align-items:center; gap:8px">
           <span class="${availClass}">${availText}</span>
-          <a class="btn view" href="product.html?id=${encodeURIComponent(p.id)}">View</a>
-          <a class="btn" href="${whatsappLink(p)}" target="_blank" rel="noopener">Inquire</a>
         </div>
       </div>
     `;

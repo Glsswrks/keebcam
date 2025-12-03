@@ -21,29 +21,42 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
 
-/* increased bottom padding so bottom-left badge doesn't overlap content */
+/* Card layout: image area + flexible body */
 .card{
   background:var(--card);
-  padding:18px 14px 34px; /* top/right/bottom increased */
+  padding:12px;
   border-radius:12px;
   border:1px solid rgba(255,255,255,0.03);
-  position: relative;
+  display:flex;
+  flex-direction:column;
+  height:100%;
 }
 
-.card img{width:100%;border-radius:8px;display:block}
-.card h4{margin:10px 0 6px;font-size:1rem}
-.card p{color:var(--muted);font-size:0.9rem;margin:0 0 10px}
-.price{font-weight:700;color:var(--accent)}
-.card .card-actions{display:flex;gap:8px;align-items:center}
-.specs{list-style:none;padding:0;margin:10px 0 0;color:var(--muted)}
-.about, .contact{margin:36px 0;padding:18px;background:var(--glass);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-.site-footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
+/* Image area: fixed aspect ratio so badge stays anchored */
+.card-image{
+  position:relative;
+  width:100%;
+  padding-top:66.66%; /* 3:2 aspect ratio; adjust if you prefer square (100%) */
+  overflow:hidden;
+  border-radius:8px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+}
 
-/* Corner price badge moved to bottom-left */
+/* Image fills the image area */
+.card-image img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Price badge anchored to bottom-left of image area */
 .price-badge {
   position: absolute;
-  bottom: 10px;
-  left: 10px;
+  bottom: 8px;
+  left: 8px;
   background: rgba(124, 92, 255, 0.12);
   color: var(--accent);
   border: 1px solid rgba(124, 92, 255, 0.35);
@@ -55,71 +68,62 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
   z-index: 6;
 }
 
-/* Make image and title links feel interactive without changing layout */
-.card-link,
-.card-title-link {
-  text-decoration: none;
-  color: inherit;
+/* Card body */
+.card-body{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:10px;
+  flex:1; /* ensures footer stays at bottom */
 }
 
+.card-title{margin:0}
+.card-title-link{color:inherit;text-decoration:none;font-weight:700}
+.card-desc{color:var(--muted);font-size:0.9rem;margin:0}
+
+/* Footer area inside card body: fixed position at bottom of card-body */
+.card-footer{
+  margin-top:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+/* availability text: plain colored text */
+.availability{
+  font-weight:700;
+  font-size:0.9rem;
+  color:var(--muted);
+}
+
+/* Available / Unavailable colors */
+.availability.available{ color:#2ecc71; }
+.availability.unavailable{ color:#ff6b6b; }
+
+/* small helpers */
+.specs-inline{color:var(--muted);font-size:0.85rem}
+
+/* Hover effect for image */
 .card-link img {
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
-
 .card:hover .card-link img {
   transform: translateY(-1px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.35);
 }
 
-/* Plain availability text (no border, no background, no padding) */
-.card .card-actions .availability {
-  display: inline;
-  padding: 0;
-  margin: 0;
-  border: none !important;
-  background: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--muted);
-  vertical-align: middle;
-}
-
-/* Available state — green text */
-.card .card-actions .availability.available {
-  color: #2ecc71 !important;
-}
-
-/* Unavailable state — red text */
-.card .card-actions .availability.unavailable {
-  color: #ff6b6b !important;
-}
-
-/* Small screens: keep layout tidy */
-@media (max-width:520px){
-  .card .card-actions { flex-direction:column; gap:8px; align-items:flex-start; }
-  .card .card-actions > div[style] { margin-left:0; display:flex; gap:8px; width:100%; justify-content:space-between; }
-  .card .card-actions .availability { font-size:0.85rem; text-align:left; }
-
-  /* move badge slightly inward on very small screens */
-  .price-badge { bottom: 8px; left: 8px; padding:5px 8px; font-size:0.85rem; }
-}
-
-/* modal styles left in case you reuse modal elsewhere */
-.modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,4,6,0.6);z-index:60}
-.modal[aria-hidden="false"]{display:flex}
-.modal-content{background:linear-gradient(180deg,#0b0d10,#0f1114);padding:18px;border-radius:12px;max-width:900px;width:95%;border:1px solid rgba(255,255,255,0.04)}
-.modal-body{display:flex;gap:18px;align-items:flex-start}
-.modal-image img{width:360px;max-width:40vw;border-radius:8px}
-.modal-info h3{margin:0 0 8px}
-.modal-close{position:absolute;right:18px;top:18px;background:transparent;border:none;color:#fff;font-size:22px}
-.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
-.contact-links{display:flex;gap:10px;align-items:center;margin-top:10px}
-.discord-note{margin-top:12px;color:var(--muted)}
+/* About/contact/footer */
+.about, .contact{margin:36px 0;padding:18px;background:var(--glass);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+.site-footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
 .muted{color:var(--muted)}
+
+/* Responsive tweaks */
+@media (max-width:520px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
+  .price-badge { bottom: 6px; left: 6px; padding:5px 8px; font-size:0.85rem; }
+  .card-image{padding-top:70%;}
+}
 @media(max-width:800px){
   .hero-inner{flex-direction:column-reverse;text-align:center}
-  .modal-body{flex-direction:column}
-  .modal-image img{width:100%}
 }

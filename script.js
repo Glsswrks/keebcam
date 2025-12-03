@@ -34,6 +34,15 @@ function whatsappLink(product){
   return `${base}?text=${text}`;
 }
 
+/* ---------- Robust product link for GitHub Pages ---------- */
+function productLink(id){
+  // Example: https://glsswrks.github.io/keebcam/ -> baseDir "/keebcam/"
+  const { origin, pathname } = window.location;
+  const baseDir = pathname.replace(/index\.html$/, '').replace(/\/$/, ''); // strip trailing slash & index.html
+  const url = `${origin}${baseDir}/products.html?id=${encodeURIComponent(id)}`;
+  return url;
+}
+
 /* ---------- Safe element lookups ---------- */
 const grid = document.getElementById('productGrid');
 const layoutFilter = document.getElementById('layoutFilter');
@@ -53,13 +62,15 @@ function render(productsList){
     const availClass = p.available ? 'availability available' : 'availability unavailable';
     const availText = p.available ? 'Available' : 'Unavailable';
 
+    const href = productLink(p.id);
+
     card.innerHTML = `
       <span class="price-badge">$${p.price}</span>
-      <a class="card-link" href="products.html?id=${encodeURIComponent(p.id)}" aria-label="View ${p.title}">
+      <a class="card-link" href="${href}" aria-label="View ${p.title}">
         <img src="${p.img}" alt="${p.title}">
       </a>
       <h4>
-        <a class="card-title-link" href="products.html?id=${encodeURIComponent(p.id)}">${p.title}</a>
+        <a class="card-title-link" href="${href}">${p.title}</a>
       </h4>
       <p class="muted">${p.short}</p>
       <div class="card-actions" style="align-items:center">

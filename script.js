@@ -16,14 +16,13 @@ const products = [
     specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches"]
   },
   {
-    id: "made68-ultra",
-    title: "MADE68 Ultra",
-    short: "68‑key compact; premium aluminum case; Hall‑effect / magnetic switch features",
-    price: 199,
-    layout: "68",
-    available: false,
-    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/4ef591ca-b818-4e2b-ae0a-14b2cc81f9f3-1000x1000-peMUQzqEYVGLpdYu48cevRgENzP3G9OX3h2PuM0n.png",
-    specs: ["68 keys","Aluminum alloy case","Magnetic / Hall effect switches","Premium finish"]
+       id: "nano68he",
+        title: "Madlions Nano68 HE",
+        short: "NANO68 Magnetic Switch Keyboard: Responsive switches, customizable RGB, low latency, and versatile functions for gamers",
+        price: 45,
+        layout: "68",
+        img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/pink-nano-68-pro-keybord.jpg",
+        specs: ["68 keys","Aluminum alloy Position Plate","Magnetic / Hall effect switches","Low latency"]
   }
 ];
 

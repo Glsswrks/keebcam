@@ -1,7 +1,7 @@
 // Contact constants - replace with your real handles
 const CONTACT_WHATSAPP_NUMBER = "+85512345678";
-const TELEGRAM_HANDLE = "yourtelegram";
-const DISCORD_HANDLE = "yourname#1234";
+const TELEGRAM_HANDLE = "glsswrksGG";
+const DISCORD_HANDLE = "Kokushibo#4764";
 
 // Two example products: ATK EDGE60HE and MADE68 Ultra
 const products = [

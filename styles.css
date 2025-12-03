@@ -20,7 +20,16 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03); position: relative;}
+
+/* increased bottom padding so bottom-left badge doesn't overlap content */
+.card{
+  background:var(--card);
+  padding:18px 14px 34px; /* top/right/bottom increased */
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.03);
+  position: relative;
+}
+
 .card img{width:100%;border-radius:8px;display:block}
 .card h4{margin:10px 0 6px;font-size:1rem}
 .card p{color:var(--muted);font-size:0.9rem;margin:0 0 10px}
@@ -30,11 +39,11 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 .about, .contact{margin:36px 0;padding:18px;background:var(--glass);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 .site-footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
 
-/* Corner price badge */
+/* Corner price badge moved to bottom-left */
 .price-badge {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  bottom: 10px;
+  left: 10px;
   background: rgba(124, 92, 255, 0.12);
   color: var(--accent);
   border: 1px solid rgba(124, 92, 255, 0.35);
@@ -43,6 +52,7 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
   font-weight: 700;
   font-size: 0.95rem;
   backdrop-filter: blur(6px);
+  z-index: 6;
 }
 
 /* Make image and title links feel interactive without changing layout */
@@ -91,6 +101,9 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
   .card .card-actions { flex-direction:column; gap:8px; align-items:flex-start; }
   .card .card-actions > div[style] { margin-left:0; display:flex; gap:8px; width:100%; justify-content:space-between; }
   .card .card-actions .availability { font-size:0.85rem; text-align:left; }
+
+  /* move badge slightly inward on very small screens */
+  .price-badge { bottom: 8px; left: 8px; padding:5px 8px; font-size:0.85rem; }
 }
 
 /* modal styles left in case you reuse modal elsewhere */

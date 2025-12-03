@@ -11,7 +11,7 @@ const products = [
     short: "60% esports magnetic keyboard; aluminum CNC case; PBT dye‑sublimation keycaps",
     price: 229,
     layout: "60",
-    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/2_27ffe2b5-f717-4c2f-940c-959572442aa1.jpg",
+    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/2_27ffe2b5-f717-4c2f-940c-959572442aa1.jpg",
     specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches"]
   },
   {
@@ -20,7 +20,7 @@ const products = [
     short: "68‑key compact; premium aluminum case; Hall‑effect / magnetic switch features",
     price: 199,
     layout: "68",
-    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/4ef591ca-b818-4e2b-ae0a-14b2cc81f9f3-1000x1000-peMUQzqEYVGLpdYu48cevRgENzP3G9OX3h2PuM0n.png",
+    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/4ef591ca-b818-4e2b-ae0a-14b2cc81f9f3-1000x1000-peMUQzqEYVGLpdYu48cevRgENzP3G9OX3h2PuM0n.png",
     specs: ["68 keys","Aluminum alloy case","Magnetic / Hall effect switches","Premium finish"]
   }
 ];

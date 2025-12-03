@@ -73,6 +73,7 @@ if(layoutFilter){
 }
 
 /* ---------- Optional UI enhancement: selected-label ---------- */
+/*
 (function setupSelectedLabel(){
   try {
     const wrapper = document.querySelector('.custom-select');
@@ -99,7 +100,7 @@ if(layoutFilter){
   } catch (e) {
     console.warn('selected-label setup failed', e);
   }
-})();
+})();*/
 
 /* ---------- Contact links (safe) ---------- */
 if(whatsappMain) whatsappMain.href = `https://wa.me/${CONTACT_WHATSAPP_NUMBER.replace(/\D/g,'')}`;

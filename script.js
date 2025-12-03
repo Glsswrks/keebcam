@@ -11,6 +11,7 @@ const products = [
     short: "60% esports magnetic keyboard; aluminum CNC case; PBT dye‑sublimation keycaps",
     price: 229,
     layout: "60",
+    available: true,
     img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/2_27ffe2b5-f717-4c2f-940c-959572442aa1.jpg",
     specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches"]
   },
@@ -20,6 +21,7 @@ const products = [
     short: "68‑key compact; premium aluminum case; Hall‑effect / magnetic switch features",
     price: 199,
     layout: "68",
+    available: false,
     img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/4ef591ca-b818-4e2b-ae0a-14b2cc81f9f3-1000x1000-peMUQzqEYVGLpdYu48cevRgENzP3G9OX3h2PuM0n.png",
     specs: ["68 keys","Aluminum alloy case","Magnetic / Hall effect switches","Premium finish"]
   }
@@ -47,13 +49,18 @@ function render(productsList){
   productsList.forEach(p=>{
     const card = document.createElement('div');
     card.className = 'card';
+    // availability badge: green for available, red for unavailable
+    const availClass = p.available ? 'availability available' : 'availability unavailable';
+    const availText = p.available ? 'Available' : 'Unavailable';
+
     card.innerHTML = `
       <img src="${p.img}" alt="${p.title}">
       <h4>${p.title}</h4>
       <p class="muted">${p.short}</p>
-      <div class="card-actions">
+      <div class="card-actions" style="align-items:center">
         <div class="price">$${p.price}</div>
-        <div style="margin-left:auto">
+        <div style="margin-left:auto; display:flex; align-items:center; gap:8px">
+          <span class="${availClass}">${availText}</span>
           <a class="btn view" href="product.html?id=${encodeURIComponent(p.id)}">View</a>
           <a class="btn" href="${whatsappLink(p)}" target="_blank" rel="noopener">Inquire</a>
         </div>

@@ -11,7 +11,7 @@ const products = [
     short: "60% esports magnetic keyboard; aluminum CNC case; PBT dye‑sublimation keycaps",
     price: 229,
     layout: "60",
-    img: "https://www.atk.store/blogs/news/recreating-the-pinnacle-atk-edge-60-he-ultimate-officially-launched",
+    img: "https://github.com/Glsswrks/keebcam/blob/main/2_27ffe2b5-f717-4c2f-940c-959572442aa1.jpg",
     specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches"]
   },
   {

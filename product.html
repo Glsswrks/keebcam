@@ -99,8 +99,8 @@
           <div style="margin-top:12px;font-weight:700;color:var(--accent);font-size:1.25rem">$${product.price}</div>
           <ul class="specs">${product.specs.map(s=>`<li>• ${s}</li>`).join('')}</ul>
           <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="btn primary" href="${whatsappLink(product)}" target="_blank">Inquire on WhatsApp</a>
-            <a class="btn" href="${telegramLink()}" target="t.me/glsswrksGG">Inquire on Telegram</a>
+            <a class="btn primary" href="${whatsappLink(product)}" target="_blank" rel="noopener">Inquire on WhatsApp</a>
+            <a class="btn" href="${telegramLink()}" target="_blank" rel="noopener">Inquire on Telegram</a>
             <div style="align-self:center;color:var(--muted)">Discord: <strong style="color:#fff">${DISCORD_HANDLE}</strong></div>
           </div>
           <p style="margin-top:12px;color:var(--muted)">Shipping estimate: <strong>7–14 days</strong>. Import fees may apply.</p>

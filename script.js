@@ -7,13 +7,13 @@ const DISCORD_HANDLE = "Kokushibo#4764";
 const products = [
   {
     id: "atk-edge60he",
-    title: "ATK EDGE 60 HE",
+    title: "ATK EDGE60 HE ULTIMATE EDITION",
     short: "60% esports magnetic keyboard; aluminum CNC case; PBT dye‑sublimation keycaps",
-    price: 229,
+    price: 199,
     layout: "60",
     available: true,
     img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/2_27ffe2b5-f717-4c2f-940c-959572442aa1.jpg",
-    specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches"]
+    specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches","8K Hz Polling rate","0.08ms Latency","256k scanning-rate","Precision 0.001mm","Functions SOCD / DKS / RT / MT / TGL / Key remapping"]
   },
   {
        id: "nano68he",

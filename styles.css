@@ -21,6 +21,10 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
 .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+
+/* Positioning context for price badge */
+.card { position: relative; }
+
 .card img{width:100%;border-radius:8px;display:block}
 .card h4{margin:10px 0 6px;font-size:1rem}
 .card p{color:var(--muted);font-size:0.9rem;margin:0 0 10px}
@@ -30,18 +34,49 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 .about, .contact{margin:36px 0;padding:18px;background:var(--glass);border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
 .site-footer{padding:18px 0;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:40px}
 
+/* Corner price badge */
+.price-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(124, 92, 255, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(124, 92, 255, 0.35);
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  backdrop-filter: blur(6px);
+}
+
+/* Make image and title links feel interactive without changing layout */
+.card-link,
+.card-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link img {
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.card:hover .card-link img {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
 /* Plain availability text (no border, no background, no padding) */
 .card .card-actions .availability {
-  display: inline;           /* inline text, not a pill */
-  padding: 0;                /* remove padding */
-  margin: 0;                 /* remove margin */
-  border: none !important;   /* remove any border */
-  background: none !important; /* remove any background */
-  box-shadow: none !important; /* remove any shadow */
-  border-radius: 0 !important; /* remove rounding */
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
   font-weight: 700;
   font-size: 0.9rem;
-  color: var(--muted);       /* fallback color if state class missing */
+  color: var(--muted);
   vertical-align: middle;
 }
 
@@ -61,6 +96,7 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
   .card .card-actions > div[style] { margin-left:0; display:flex; gap:8px; width:100%; justify-content:space-between; }
   .card .card-actions .availability { font-size:0.85rem; text-align:left; }
 }
+
 /* modal styles left in case you reuse modal elsewhere */
 .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,4,6,0.6);z-index:60}
 .modal[aria-hidden="false"]{display:flex}

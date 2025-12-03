@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KeebCam Accessories</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">KeebCam</a>
+      <nav class="nav">
+        <a href="#shop">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1>Handpicked Mechanical / Hall Effect Keyboards</h1>
+          <p>Imported from trusted suppliers. Hot‑swap, PBT keycaps, and premium switches — shipped locally.</p>
+          <a href="#shop" class="btn primary">See Available Items</a>
+        </div>
+        <div class="hero-image">
+          <img src="https://via.placeholder.com/520x320?text=Keyboard" alt="Mechanical keyboard">
+        </div>
+      </div>
+    </section>
+
+    <section id="shop" class="products container">
+      <div class="section-head">
+        <h2>Available Keyboards</h2>
+        <div class="filters">
+          <select id="layoutFilter">
+            <option value="all">All layouts</option>
+            <option value="60">60%</option>
+            <option value="68">68%</option>
+            <option value="full">Full</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="productGrid" class="grid"></div>
+    </section>
+
+    <section id="about" class="container about">
+      <h3>About KeebCam</h3>
+      <p>We source high‑quality mechanical keyboards from Taobao suppliers and import them for local enthusiasts. Small batches, careful inspection, and local support.</p>
+    </section>
+
+    <section id="contact" class="container contact">
+      <h3>Contact</h3>
+      <p>Message to inquire about availability or request photos and specs.</p>
+      <div class="contact-links">
+        <a id="whatsappMain" class="btn primary" href="#" target="+855-14975307">WhatsApp</a>
+        <a id="telegramMain" class="btn" href="#" target="+855-14975307">Telegram</a>
+        <span class="muted">Discord</span>
+        <div class="muted" id="discordMain">Kokushibo#4764</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> KeebCam. Items shown are subject to stock availability.</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

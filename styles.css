@@ -20,11 +20,7 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 
 .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
-
-/* Positioning context for price badge */
-.card { position: relative; }
-
+.card{background:var(--card);padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03); position: relative;}
 .card img{width:100%;border-radius:8px;display:block}
 .card h4{margin:10px 0 6px;font-size:1rem}
 .card p{color:var(--muted);font-size:0.9rem;margin:0 0 10px}

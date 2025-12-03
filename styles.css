@@ -52,20 +52,27 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
   display:block;
 }
 
-/* Price badge anchored to bottom-left of image area */
+/* Price badge anchored to bottom-left of image area
+   - text is white with a text-shadow
+   - badge has subtle glass background and a drop shadow for depth */
 .price-badge {
   position: absolute;
   bottom: 8px;
   left: 8px;
-  background: rgba(124, 92, 255, 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(124, 92, 255, 0.35);
+  background: rgba(124, 92, 255, 0.14); /* subtle accent glass */
+  color: #ffffff; /* changed to white */
+  border: 1px solid rgba(255,255,255,0.06); /* softer border for white text */
   border-radius: 10px;
   padding: 6px 10px;
   font-weight: 700;
   font-size: 0.95rem;
   backdrop-filter: blur(6px);
   z-index: 6;
+
+  /* visual depth */
+  box-shadow: 0 8px 22px rgba(2,4,6,0.55);
+  /* white text shadow for better separation on busy images */
+  text-shadow: 0 2px 8px rgba(0,0,0,0.65);
 }
 
 /* Card body */
@@ -121,7 +128,7 @@ body{margin:0;background:linear-gradient(180deg,#050607 0%,#0b0d10 100%);color:#
 /* Responsive tweaks */
 @media (max-width:520px){
   .grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));}
-  .price-badge { bottom: 6px; left: 6px; padding:5px 8px; font-size:0.85rem; }
+  .price-badge { bottom: 6px; left: 6px; padding:5px 8px; font-size:0.85rem; box-shadow: 0 6px 16px rgba(2,4,6,0.55); text-shadow: 0 1px 6px rgba(0,0,0,0.65); }
   .card-image{padding-top:70%;}
 }
 @media(max-width:800px){

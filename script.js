@@ -59,6 +59,85 @@ function whatsappLink(product){
   return `${base}?text=${text}`;
 }
 
+/* ---------- Layout filter behavior (existing) ---------- */
+layoutFilter.addEventListener('change', ()=>{
+  const v = layoutFilter.value;
+  if(v==='all') render(products);
+  else render(products.filter(p=>p.layout===v));
+});
+
+/* ---------- Optional UI enhancement: selected-label ---------- */
+/*
+  This block:
+  - Looks for a .custom-select wrapper (added in index.html when you applied the styled select).
+  - If found, it inserts a <span class="selected-label"> showing the currently selected option.
+  - Keeps the label in sync on load and on change.
+  - Safe: it only runs if .custom-select exists, so it won't break pages without the custom wrapper.
+*/
+(function setupSelectedLabel(){
+  try {
+    const wrapper = document.querySelector('.custom-select');
+    if(!wrapper || !layoutFilter) return;
+
+    // Create label if it doesn't exist
+    let label = wrapper.querySelector('.selected-label');
+    if(!label){
+      label = document.createElement('span');
+      label.className = 'selected-label';
+      // Basic inline styles so it looks good without extra CSS; you can move to styles.css if preferred
+      label.style.marginLeft = '10px';
+      label.style.fontSize = '0.95rem';
+      label.style.color = 'var(--muted)';
+      label.style.fontWeight = '600';
+      wrapper.appendChild(label);
+    }
+
+    // Function to sync label text with select
+    function syncLabel(){
+      const opt = layoutFilter.options[layoutFilter.selectedIndex];
+      label.textContent = opt ? opt.text : '';
+    }
+
+    // Initialize and keep in sync
+    syncLabel();
+    layoutFilter.addEventListener('change', syncLabel);
+  } catch (e) {
+    // Fail silently; enhancement is optional and should not break the page
+    console.warn('selected-label setup failed', e);
+  }
+})();
+
+/* ---------- Contact links and initial render ---------- */
+whatsappMain.href = `https://wa.me/${CONTACT_WHATSAPP_NUMBER.replace(/\D/g,'')}`;
+telegramMain.href = `https://t.me/${TELEGRAM_HANDLE}`;
+discordMain.textContent = DISCORD_HANDLE;
+
+render(products);
+yearEl.textContent = new Date().getFullYear();  productsList.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.title}">
+      <h4>${p.title}</h4>
+      <p class="muted">${p.short}</p>
+      <div class="card-actions">
+        <div class="price">$${p.price}</div>
+        <div style="margin-left:auto">
+          <a class="btn view" href="product.html?id=${encodeURIComponent(p.id)}">View</a>
+          <a class="btn" href="${whatsappLink(p)}" target="_blank">Inquire</a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function whatsappLink(product){
+  const base = `https://wa.me/${CONTACT_WHATSAPP_NUMBER.replace(/\D/g,'')}`;
+  const text = encodeURIComponent(`Hi, I'm interested in ${product.title}. Is it available?`);
+  return `${base}?text=${text}`;
+}
+
 layoutFilter.addEventListener('change', ()=>{
   const v = layoutFilter.value;
   if(v==='all') render(products);

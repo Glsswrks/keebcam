@@ -1,96 +1,137 @@
-// Contact constants
-const CONTACT_WHATSAPP_NUMBER = "+85512345678";
-const TELEGRAM_HANDLE = "glsswrksGG";
-const DISCORD_HANDLE = "Kokushibo#4764";
+// script.js
+document.addEventListener('DOMContentLoaded', () => {
+  const products = [
+    {
+      id: 'kb-analog-1',
+      title: 'Apex Analog 65',
+      price: 199,
+      img: 'assets/keyboard-1.jpg',
+      desc: '65% analog keyboard with hot-swap sockets and gasket mount.',
+      specs: ['Analog input', 'Hot-swap', 'Gasket mount', 'PBT keycaps']
+    },
+    {
+      id: 'kb-analog-2',
+      title: 'Apex Analog 75',
+      price: 229,
+      img: 'assets/keyboard-2.jpg',
+      desc: '75% layout with rotary encoder and per-key RGB.',
+      specs: ['Per-key RGB', 'Rotary encoder', 'Hot-swap', 'USB-C']
+    },
+    {
+      id: 'kb-analog-3',
+      title: 'Apex Pro TKL',
+      price: 249,
+      img: 'assets/keyboard-3.jpg',
+      desc: 'Tenkeyless pro model with aluminum top plate.',
+      specs: ['Aluminum top plate', 'Hot-swap', 'Analog sensing', 'Firmware']
+    }
+  ];
 
-// Product data
-const products = [
-  {
-    id: "atk-edge60he",
-    title: "ATK EDGE 60 HE",
-    short: "60% esports magnetic keyboard; aluminum CNC case; PBT dye‑sublimation keycaps",
-    price: 229,
-    layout: "60",
-    available: true,
-    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/2_27ffe2b5-f717-4c2f-940c-959572442aa1.jpg",
-    specs: ["60% (61 keys)","Aluminum CNC case","PBT dye‑sublimation keycaps","Hot‑swap / magnetic switches"]
-  },
-  {
-    id: "made68-ultra",
-    title: "MADE68 Ultra",
-    short: "68‑key compact; premium aluminum case; Hall‑effect / magnetic switch features",
-    price: 199,
-    layout: "68",
-    available: false,
-    img: "https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/4ef591ca-b818-4e2b-ae0a-14b2cc81f9f3-1000x1000-peMUQzqEYVGLpdYu48cevRgENzP3G9OX3h2PuM0n.png",
-    specs: ["68 keys","Aluminum alloy case","Magnetic / Hall effect switches","Premium finish"]
-  }
-];
+  const productGrid = document.getElementById('productGrid');
+  const modal = document.getElementById('productModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDesc = document.getElementById('modalDesc');
+  const modalSpecs = document.getElementById('modalSpecs');
+  const modalImage = document.getElementById('modalImage');
+  const modalPrice = document.getElementById('modalPrice');
+  const addToCartBtn = document.getElementById('addToCart');
+  const cartCount = document.getElementById('cartCount');
+  const cartBtn = document.getElementById('cartBtn');
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.querySelector('.main-nav');
 
-// Utility
-function whatsappLink(product){
-  const base = `https://wa.me/${CONTACT_WHATSAPP_NUMBER.replace(/\D/g,'')}`;
-  const text = encodeURIComponent(`Hi, I'm interested in ${product.title}. Is it available?`);
-  return `${base}?text=${text}`;
-}
-
-// Robust product link for GitHub Pages
-function productLink(id){
-  const { origin, pathname } = window.location;
-  const baseDir = pathname.replace(/index\.html$/, '').replace(/\/$/, '');
-  return `${origin}${baseDir}/products.html?id=${encodeURIComponent(id)}`;
-}
-
-// Safe element lookups
-const grid = document.getElementById('productGrid');
-const yearEl = document.getElementById('year');
-const whatsappMain = document.getElementById('whatsappMain');
-const telegramMain = document.getElementById('telegramMain');
-const discordMain = document.getElementById('discordMain');
-
-// Render function (image area + body with footer)
-function render(productsList){
-  if(!grid) return;
-  grid.innerHTML = '';
-  productsList.forEach(p=>{
-    const card = document.createElement('div');
-    card.className = 'card';
-
-    const availClass = p.available ? 'availability available' : 'availability unavailable';
-    const availText = p.available ? 'Available' : 'Unavailable';
-    const href = productLink(p.id);
-
+  // Render product cards
+  products.forEach(p => {
+    const card = document.createElement('article');
+    card.className = 'product-card';
     card.innerHTML = `
-      <div class="card-image">
-        <a class="card-link" href="${href}" aria-label="View ${p.title}">
-          <img src="${p.img}" alt="${p.title}">
-        </a>
-        <span class="price-badge">$${p.price}</span>
-      </div>
-
-      <div class="card-body">
-        <h4 class="card-title">
-          <a class="card-title-link" href="${href}">${p.title}</a>
-        </h4>
-        <p class="muted card-desc">${p.short}</p>
-
-        <div class="card-footer">
-          <div class="specs-inline muted">${p.layout} • ${p.specs[0] || ''}</div>
-          <div class="availability-wrap">
-            <span class="${availClass}">${availText}</span>
-          </div>
+      <div class="product-thumb"><img src="${p.img}" alt="${p.title}"></div>
+      <div>
+        <div class="product-meta">
+          <div class="product-title">${p.title}</div>
+          <div class="product-price">$${p.price}</div>
+        </div>
+        <p class="product-desc" style="color:var(--muted);margin:8px 0">${p.desc}</p>
+        <div class="product-actions">
+          <button class="btn btn-outline view-btn" data-id="${p.id}">View</button>
+          <button class="btn btn-primary add-btn" data-id="${p.id}">Add to cart</button>
         </div>
       </div>
     `;
-    grid.appendChild(card);
+    productGrid.appendChild(card);
   });
-}
 
-// Contact links
-if(whatsappMain) whatsappMain.href = `https://wa.me/${CONTACT_WHATSAPP_NUMBER.replace(/\D/g,'')}`;
-if(telegramMain) telegramMain.href = `https://t.me/${TELEGRAM_HANDLE}`;
-if(discordMain) discordMain.textContent = DISCORD_HANDLE;
+  // Open modal
+  productGrid.addEventListener('click', (e) => {
+    const view = e.target.closest('.view-btn');
+    const add = e.target.closest('.add-btn');
+    if (view) {
+      const id = view.dataset.id;
+      openProductModal(id);
+    } else if (add) {
+      const id = add.dataset.id;
+      addToCart(id);
+    }
+  });
 
-// Init
-if(grid) render(products);
-if(yearEl) yearEl.textContent = new Date().getFullYear();
+  function openProductModal(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    modalTitle.textContent = p.title;
+    modalDesc.textContent = p.desc;
+    modalImage.src = p.img;
+    modalPrice.textContent = `$${p.price}`;
+    modalSpecs.innerHTML = '';
+    p.specs.forEach(s => {
+      const li = document.createElement('li');
+      li.textContent = s;
+      modalSpecs.appendChild(li);
+    });
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close modal
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  function closeModal() {
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  // Cart logic (simple)
+  let cart = [];
+  function addToCart(id) {
+    const p = products.find(x => x.id === id);
+    if (!p) return;
+    cart.push(p);
+    cartCount.textContent = cart.length;
+    // small feedback
+    cartBtn.animate([{ transform: 'scale(1)' }, { transform: 'scale(1.08)' }, { transform: 'scale(1)' }], { duration: 220 });
+  }
+
+  // Header menu toggle for small screens
+  menuToggle.addEventListener('click', () => {
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+    mainNav.style.display = expanded ? 'none' : 'block';
+  });
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Add to cart from modal
+  addToCartBtn.addEventListener('click', () => {
+    const title = modalTitle.textContent;
+    const p = products.find(x => x.title === title);
+    if (p) addToCart(p.id);
+    closeModal();
+  });
+
+  // Keyboard accessibility: close modal on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+  });
+});

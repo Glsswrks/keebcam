@@ -3,67 +3,154 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KeebCam Accessories</title>
+  <title>Keystroke Labs — Mechanical Keyboards</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#">KeebCam</a>
-      <nav class="nav">
-        <a href="#shop">Shop</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <a class="brand" href="#">
+        <img src="assets/logo.svg" alt="Keystroke Labs logo" class="brand-logo" />
+        <span class="brand-name">Keystroke Labs</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#support">Support</a></li>
+        </ul>
       </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn search-btn" aria-label="Search">🔍</button>
+        <button class="icon-btn cart-btn" aria-label="Cart" id="cartBtn">🛒 <span class="cart-count" id="cartCount">0</span></button>
+        <button class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false">☰</button>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-text">
-          <h1>Handpicked Mechanical / Hall Effect Keyboards</h1>
-          <p>Imported from trusted suppliers. Hot‑swap, PBT keycaps, and premium switches — shipped locally.</p>
-          <a href="#shop" class="btn primary">See Available Items</a>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="hero-title">Precision mechanical keyboards built for speed and feel</h1>
+          <p class="hero-sub">Analog input, premium switches, and customizable firmware — engineered for pros and enthusiasts.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#products">Shop keyboards</a>
+            <a class="btn btn-outline" href="#features">See features</a>
+          </div>
+          <ul class="trust-list">
+            <li>Free shipping</li>
+            <li>2-year warranty</li>
+            <li>30-day returns</li>
+          </ul>
         </div>
-        <div class="hero-image">
-          <img src="https://raw.githubusercontent.com/Glsswrks/keebcam/main/images/615afbe3bda6a3d9f1fb4f83_Wooting-60HE.png" alt="Mechanical keyboard">
+
+        <div class="hero-media" aria-hidden="false">
+          <div class="keyboard-card">
+            <img src="assets/keyboard-hero.jpg" alt="Keystroke Labs keyboard" class="keyboard-img" />
+            <div class="keyboard-badge">New</div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="shop" class="products container">
-      <div class="section-head">
-        <h2>Available Keyboards</h2>
+    <section id="features" class="features container">
+      <h2 class="section-title">Why choose our keyboards</h2>
+      <div class="feature-grid">
+        <article class="feature">
+          <h3>Analog sensing</h3>
+          <p>Full analog input for smooth control and faster actuation across games and creative apps.</p>
+        </article>
+        <article class="feature">
+          <h3>Hot-swappable</h3>
+          <p>Swap switches without soldering. Try different feels in minutes.</p>
+        </article>
+        <article class="feature">
+          <h3>Custom firmware</h3>
+          <p>Open-source firmware with per-key remapping and macros.</p>
+        </article>
+        <article class="feature">
+          <h3>Premium build</h3>
+          <p>Aluminum top plate, gasket mount options, and PBT keycaps.</p>
+        </article>
       </div>
-
-      <div id="productGrid" class="grid"></div>
     </section>
 
-    <section id="about" class="container about">
-      <h3>About KeebCam</h3>
-      <p>We source high‑quality mechanical keyboards from Taobao suppliers and import them for local enthusiasts. Small batches, careful inspection, and local support.</p>
+    <section id="products" class="products container">
+      <h2 class="section-title">Featured keyboards</h2>
+      <div class="product-grid" id="productGrid">
+        <!-- Product cards inserted here -->
+      </div>
     </section>
 
-    <section id="contact" class="container contact">
-      <h3>Contact</h3>
-      <p>Message to inquire about availability or request photos and specs.</p>
-      <div class="contact-links">
-        <a id="whatsappMain" class="btn primary" href="#" target="_blank">WhatsApp</a>
-        <a id="telegramMain" class="btn" href="#" target="_blank">Telegram</a>
-        <span class="muted">Discord</span>
-        <div class="muted" id="discordMain">Kokushibo#4764</div>
-      </div>
+    <section id="about" class="about container">
+      <h2 class="section-title">About Keystroke Labs</h2>
+      <p>We design keyboards with a focus on feel, durability, and meaningful features. Our team blends hardware engineering with firmware expertise to deliver a refined typing and gaming experience.</p>
+    </section>
+
+    <section id="support" class="support container">
+      <h2 class="section-title">Support</h2>
+      <p>Documentation, firmware downloads, and warranty info are available in our support center.</p>
+      <a class="btn btn-outline" href="#">Visit support center</a>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year"></span> KeebCam. Items shown are subject to stock availability.</small>
+    <div class="container footer-grid">
+      <div>
+        <strong>Keystroke Labs</strong>
+        <p>Precision keyboards for creators and competitors.</p>
+      </div>
+      <div>
+        <strong>Shop</strong>
+        <ul>
+          <li><a href="#products">Keyboards</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Keycaps</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong>Company</strong>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#support">Support</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <small>© <span id="year"></span> Keystroke Labs. All rights reserved.</small>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <!-- Product modal -->
+  <div class="modal" id="productModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-panel" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-content">
+        <div class="modal-media">
+          <img src="assets/keyboard-hero.jpg" alt="" id="modalImage" />
+        </div>
+        <div class="modal-info">
+          <h3 id="modalTitle">Keyboard Model</h3>
+          <p id="modalDesc">Full description of the keyboard, features, and build details.</p>
+          <ul class="specs-list" id="modalSpecs">
+            <!-- specs -->
+          </ul>
+          <div class="modal-actions">
+            <div class="price" id="modalPrice">$199</div>
+            <button class="btn btn-primary" id="addToCart">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
